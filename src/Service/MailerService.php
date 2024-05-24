@@ -9,10 +9,12 @@ use Symfony\Component\Mime\Email;
 class MailerService
 {
     private MailerInterface $mailer;
+    private string $noReplyEmail;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(MailerInterface $mailer, string $noReplyEmail)
     {
         $this->mailer = $mailer;
+        $this->noReplyEmail = $noReplyEmail;
     }
 
     /**
@@ -33,7 +35,7 @@ class MailerService
     {
         $mail = (new Email())
             ->subject('Maximilien LEMOINE | '.$object)
-            ->from('noreply@maximilien-lemoine.fr')
+            ->from($this->noReplyEmail)
             ->to($destinataire)
             ->html($corps);
         $this->mailer->send($mail);

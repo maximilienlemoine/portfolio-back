@@ -4,7 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    no_reply_email: '%env(NO_REPLY)%'
+    receiver_email: '%env(RECEIVER)%'
+    api_secret: '%env(API_SECRET)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -22,3 +24,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\MailerService:
+        arguments:
+            $noReplyEmail: '%no_reply_email%'
+
+    App\Service\SecurityApiService:
+        arguments:
+            $apiSecret: '%api_secret%'
