@@ -5,7 +5,7 @@
 # Use the front controller as index file.
 DirectoryIndex index.php
 
-# Uncomment the following line if you install assets as symlinks or if you
+# Uncomment the following line if you install frontend as symlinks or if you
 # experience problems related to symlinks when compiling LESS/Sass/CoffeScript.
 # Options +FollowSymlinks
 

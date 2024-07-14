@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes stacks{% endblock %}
+
+{% block body %}
+    <h1>Mes stacks</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Icone</th>
+                <th>Couleur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stack in stacks %}
+            <tr>
+                <td>{{ stack.id }}</td>
+                <td>{{ stack.title }}</td>
+                <td>{{ stack.icon }}</td>
+                <td><span style="background-color: {{ stack.color }};">{{ stack.color }}</span>
+                </td>
+                <td>
+                    <a href="{{ path('app_stack_show', {'id': stack.id}) }}">Détails</a>
+                    <a href="{{ path('app_stack_edit', {'id': stack.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune stack</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stack_new') }}">Nouvelle stack</a>
+{% endblock %}
