@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compétence{% endblock %}
+
+{% block body %}
+    <h1>Compétence</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ skill.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ skill.title }}</td>
+            </tr>
+            <tr>
+                <th>Icône</th>
+                <td>{{ skill.icon }}</td>
+            </tr>
+            <tr>
+                <th>Stacks</th>
+                <td>
+                    {% include 'stack/_read.html.twig' with {'stacks' : skill.stacks} %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_skill_index') }}">Retour à la liste des compétences</a>
+
+    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">Modifier</a>
+
+    {{ include('skill/_delete_form.html.twig') }}
+{% endblock %}

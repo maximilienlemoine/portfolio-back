@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Goal{% endblock %}
+
+{% block body %}
+    <h1>Modifier Goal</h1>
+
+    {{ include('goal/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_goal_index') }}">Retour à la liste des objectifs</a>
+
+    {{ include('goal/_delete_form.html.twig') }}
+{% endblock %}

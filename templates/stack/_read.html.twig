@@ -1,0 +1,5 @@
+{% for stack in stacks %}
+    {{ stack }}{% if not loop.last %}, <br>{% endif %}
+{% else %}
+    Aucun stack
+{% endfor %}

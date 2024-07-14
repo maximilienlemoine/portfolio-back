@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compétences{% endblock %}
+
+{% block body %}
+    <h1>Compétences</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Icône</th>
+                <th>Stacks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for skill in skills %}
+            <tr>
+                <td>{{ skill.id }}</td>
+                <td>{{ skill.title }}</td>
+                <td>{{ skill.icon }}</td>
+                <td>
+                    {% include 'stack/_read.html.twig' with {'stacks' : skill.stacks} %}
+                </td>
+                <td>
+                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">Détails</a>
+                    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune compétences</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_skill_new') }}">Nouvelle compétence</a>
+{% endblock %}

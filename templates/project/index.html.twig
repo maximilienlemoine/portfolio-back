@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets{% endblock %}
+
+{% block body %}
+    <h1>Projets</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Lien du projet</th>
+                <th>Lien du code source</th>
+                <th>Stacks</th>
+                <th>Objectif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.description }}</td>
+                <td><a target="_blank" href="https://{{ project.projectLink }}">{{ project.projectLink }}</a></td>
+                <td><a target="_blank" href="https://{{ project.sourceCodeLink }}">{{ project.sourceCodeLink }}</a></td>
+                <td>
+                    {% include 'stack/_read.html.twig' with {'stacks' : project.stacks} %}
+                </td>
+                <td>
+                    {% include 'goal/_read.html.twig' with {'goals' : project.goals} %}
+                </td>
+                <td>
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}">Détails</a>
+                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun projet</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_project_new') }}">Nouveau projet</a>
+{% endblock %}

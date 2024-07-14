@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_stack_delete', {'id': stack.id}) }}" onsubmit="return confirm('Êtes vous sur de vouloir supprimer cette stack?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ stack.id) }}">
+    <button class="btn">Supprimer</button>
+</form>

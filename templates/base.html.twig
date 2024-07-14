@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>ML | {% block title %}Backoffice{% endblock %}</title>
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+                <a href="{{ path('app_home_index') }}">Accueil</a>
+                <a href="{{ path('app_goal_index') }}">Objectifs</a>
+                <a href="{{ path('app_stack_index') }}">Stacks</a>
+                <a href="{{ path('app_skill_index') }}">Compétences</a>
+                <a href="{{ path('app_project_index') }}">Projets</a>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+            {% endif %}
+        </nav>
+        {% block body %}{% endblock %}
+    </body>
+</html>

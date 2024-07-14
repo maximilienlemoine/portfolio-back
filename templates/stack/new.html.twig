@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Stack{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Stack</h1>
+
+    {{ include('stack/_form.html.twig') }}
+
+    <a href="{{ path('app_stack_index') }}">Retour à la liste des stacks</a>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% for goal in goals %}
+    {{ goal }}{% if not loop.last %}, <br>{% endif %}
+{% else %}
+    Aucun stack
+{% endfor %}
