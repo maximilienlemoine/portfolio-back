@@ -30,6 +30,13 @@ class SkillController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $icon = $form->get('icon')->getData();
+            if ($icon) {
+                $iconName = md5(uniqid()) . '.' . $icon->guessExtension();
+                $icon->move($this->getParameter('skill_upload_dir'), $iconName);
+                $skill->setIcon($iconName);
+            }
+
             $entityManager->persist($skill);
             $entityManager->flush();
 
@@ -57,6 +64,16 @@ class SkillController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $icon = $form->get('icon')->getData();
+            if ($icon) {
+                if ($skill->getIcon()) {
+                    unlink($this->getParameter('skill_upload_dir') . '/' . $skill->getIcon());
+                }
+
+                $iconName = md5(uniqid()) . '.' . $icon->guessExtension();
+                $icon->move($this->getParameter('skill_upload_dir'), $iconName);
+                $skill->setIcon($iconName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_skill_index', [], Response::HTTP_SEE_OTHER);
@@ -71,7 +88,7 @@ class SkillController extends AbstractController
     #[Route('/{id}', name: 'app_skill_delete', methods: ['POST'])]
     public function delete(Request $request, Skill $skill, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$skill->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($skill);
             $entityManager->flush();
         }

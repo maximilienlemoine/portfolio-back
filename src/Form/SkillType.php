@@ -6,6 +6,7 @@ use App\Entity\Skill;
 use App\Entity\Stack;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,8 +19,10 @@ class SkillType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre',
             ])
-            ->add('icon', TextType::class, [
+            ->add('icon', FileType::class, [
                 'label' => 'Icône',
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('stacks', EntityType::class, [
                 'class' => Stack::class,

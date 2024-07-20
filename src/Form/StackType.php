@@ -19,8 +19,10 @@ class StackType extends AbstractType
                     'label' => 'Titre',
                 ]
             )
-            ->add('icon', TextType::class, [
+            ->add('icon', FileType::class, [
                     'label' => 'Icône',
+                    'mapped' => false,
+                    'required' => false,
                 ]
             )
             ->add('color', ColorType::class, [

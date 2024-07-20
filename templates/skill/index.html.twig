@@ -10,20 +10,26 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Icône</th>
-                <th>Stacks</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Icône</th>
+            <th>Stacks</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for skill in skills %}
             <tr>
                 <td>{{ skill.id }}</td>
                 <td>{{ skill.title }}</td>
-                <td>{{ skill.icon }}</td>
+                <td>
+                    {% if skill.icon %}
+                        <img src="{{ upload_skill_dir~skill.icon }}" alt="{{ skill.title }}" style="max-width: 100px;">
+                    {% else %}
+                        Aucune icône
+                    {% endif %}
+                </td>
                 <td>
                     {% include 'stack/_read.html.twig' with {'stacks' : skill.stacks} %}
                 </td>

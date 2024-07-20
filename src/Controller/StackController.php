@@ -30,6 +30,13 @@ class StackController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $icon = $form->get('icon')->getData();
+            if ($icon) {
+                $iconName = md5(uniqid()) . '.' . $icon->guessExtension();
+                $icon->move($this->getParameter('stack_upload_dir'), $iconName);
+                $stack->setIcon($iconName);
+            }
+
             $entityManager->persist($stack);
             $entityManager->flush();
 
@@ -57,6 +64,16 @@ class StackController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $icon = $form->get('icon')->getData();
+            if ($icon) {
+                if ($stack->getIcon()) {
+                    unlink($this->getParameter('stack_upload_dir') . '/' . $stack->getIcon());
+                }
+
+                $iconName = md5(uniqid()) . '.' . $icon->guessExtension();
+                $icon->move($this->getParameter('stack_upload_dir'), $iconName);
+                $stack->setIcon($iconName);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_stack_index', [], Response::HTTP_SEE_OTHER);
@@ -71,7 +88,7 @@ class StackController extends AbstractController
     #[Route('/{id}', name: 'app_stack_delete', methods: ['POST'])]
     public function delete(Request $request, Stack $stack, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$stack->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $stack->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($stack);
             $entityManager->flush();
         }
