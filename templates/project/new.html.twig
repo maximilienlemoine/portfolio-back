@@ -3,9 +3,10 @@
 {% block title %}Nouveau project{% endblock %}
 
 {% block body %}
-    <h1>Nouveau project</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Nouveau projet</h1>
+        <a class="btn btn-secondary" href="{{ path('app_project_index') }}">Retour à la liste des projets</a>
+    </div>
 
     {{ include('project/_form.html.twig') }}
-
-    <a href="{{ path('app_project_index') }}">Retour à la liste des projets</a>
 {% endblock %}

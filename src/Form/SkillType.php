@@ -27,6 +27,9 @@ class SkillType extends AbstractType
                     return sprintf('%s - %s', $stack->getId(), $stack->getTitle());
                 },
                 'multiple' => true,
+                'attr' => [
+                    'class' => 'select-multi',
+                ],
             ])
         ;
     }

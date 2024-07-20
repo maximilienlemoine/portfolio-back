@@ -3,9 +3,12 @@
 {% block title %}Nouvel objectif{% endblock %}
 
 {% block body %}
-    <h1>Nouvel objectif</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Nouvel objectif</h1>
+        <div class="d-flex gap-3">
+            <a class="btn btn-secondary" href="{{ path('app_goal_index') }}">Retour à la liste des objectifs</a>
+        </div>
+    </div>
 
     {{ include('goal/_form.html.twig') }}
-
-    <a href="{{ path('app_goal_index') }}">Retour à la liste des objectifs</a>
 {% endblock %}

@@ -3,7 +3,11 @@
 {% block title %}Projets{% endblock %}
 
 {% block body %}
-    <h1>Projets</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Projets</h1>
+        <a class="btn btn-primary" href="{{ path('app_project_new') }}">Nouveau projet</a>
+    </div>
+    <h1></h1>
 
     <table class="table">
         <thead>
@@ -24,8 +28,8 @@
                 <td>{{ project.id }}</td>
                 <td>{{ project.title }}</td>
                 <td>{{ project.description }}</td>
-                <td><a target="_blank" href="https://{{ project.projectLink }}">{{ project.projectLink }}</a></td>
-                <td><a target="_blank" href="https://{{ project.sourceCodeLink }}">{{ project.sourceCodeLink }}</a></td>
+                <td><a target="_blank" href="{{ project.projectLink }}">{{ project.projectLink }}</a></td>
+                <td><a target="_blank" href="{{ project.sourceCodeLink }}">{{ project.sourceCodeLink }}</a></td>
                 <td>
                     {% include 'stack/_read.html.twig' with {'stacks' : project.stacks} %}
                 </td>
@@ -45,5 +49,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_project_new') }}">Nouveau projet</a>
 {% endblock %}

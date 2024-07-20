@@ -8,6 +8,7 @@ use App\Entity\Stack;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,6 +35,9 @@ class ProjectType extends AbstractType
                     return sprintf('%s - %s', $goal->getId(), $goal->getTitle());
                 },
                 'multiple' => true,
+                'attr' => [
+                    'class' => 'select-multi',
+                ],
             ])
             ->add('stacks', EntityType::class, [
                 'class' => Stack::class,
@@ -42,6 +46,9 @@ class ProjectType extends AbstractType
 
                 },
                 'multiple' => true,
+                'attr' => [
+                    'class' => 'select-multi',
+                ],
             ])
         ;
     }

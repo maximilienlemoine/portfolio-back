@@ -3,14 +3,17 @@
 {% block title %}Mes stacks{% endblock %}
 
 {% block body %}
-    <h1>Mes stacks</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Mes stacks</h1>
+        <a class="btn btn-primary" href="{{ path('app_stack_new') }}">Nouvelle stack</a>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
-                <th>Icone</th>
+                <th>Icône</th>
                 <th>Couleur</th>
                 <th>Actions</th>
             </tr>
@@ -36,5 +39,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_stack_new') }}">Nouvelle stack</a>
 {% endblock %}
