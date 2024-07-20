@@ -1,30 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>ML | {% block title %}Backoffice{% endblock %}</title>
-        <link rel="icon" href="{{ asset('favicon.ico') }}">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>ML | {% block title %}Backoffice{% endblock %}</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <nav>
-            {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
-                <a href="{{ path('app_home_index') }}">Accueil</a>
-                <a href="{{ path('app_goal_index') }}">Objectifs</a>
-                <a href="{{ path('app_stack_index') }}">Stacks</a>
-                <a href="{{ path('app_skill_index') }}">Compétences</a>
-                <a href="{{ path('app_project_index') }}">Projets</a>
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
-            {% else %}
-                <a href="{{ path('app_login') }}">Connexion</a>
-            {% endif %}
-        </nav>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5 mb-3">
+        <a class="navbar-brand" href="{{ path('app_home_index') }}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_goal_index') }}">Objectifs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_stack_index') }}">Stacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_skill_index') }}">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_project_index') }}">Projets</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="container">
+    {% block body %}{% endblock %}
+</main>
+</body>
 </html>
