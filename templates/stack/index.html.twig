@@ -23,7 +23,13 @@
             <tr>
                 <td>{{ stack.id }}</td>
                 <td>{{ stack.title }}</td>
-                <td>{{ stack.icon }}</td>
+                <td>
+                    {% if stack.icon %}
+                        <img src="{{ asset(upload_stack_dir~stack.icon) }}" alt="{{ stack.title }}" style="max-width: 100px;">
+                    {% else %}
+                        Aucune icône
+                    {% endif %}
+                </td>
                 <td><span style="background-color: {{ stack.color }};">{{ stack.color }}</span>
                 </td>
                 <td>

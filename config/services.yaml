@@ -7,6 +7,10 @@ parameters:
     no_reply_email: '%env(NO_REPLY)%'
     receiver_email: '%env(RECEIVER)%'
     api_secret: '%env(API_SECRET)%'
+    upload_dir: '%kernel.project_dir%/public/upload'
+    skill_upload_dir: '%upload_dir%/skill'
+    stack_upload_dir: '%upload_dir%/stack'
+
 services:
     # default configuration for services in *this* file
     _defaults:

@@ -24,7 +24,13 @@
             </tr>
             <tr>
                 <th>Icône</th>
-                <td>{{ skill.icon }}</td>
+                <td>
+                    {% if skill.icon %}
+                        <img src="{{ upload_skill_dir~skill.icon }}" alt="{{ skill.title }}" style="max-width: 100px;">
+                    {% else %}
+                        Aucune icône
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Stacks</th>
