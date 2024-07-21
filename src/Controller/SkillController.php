@@ -67,7 +67,9 @@ class SkillController extends AbstractController
             $icon = $form->get('icon')->getData();
             if ($icon) {
                 if ($skill->getIcon()) {
-                    unlink($this->getParameter('skill_upload_dir') . '/' . $skill->getIcon());
+                    if (file_exists($this->getParameter('skill_upload_dir') . '/' . $skill->getIcon())) {
+                        unlink($this->getParameter('skill_upload_dir') . '/' . $skill->getIcon());
+                    }
                 }
 
                 $iconName = md5(uniqid()) . '.' . $icon->guessExtension();

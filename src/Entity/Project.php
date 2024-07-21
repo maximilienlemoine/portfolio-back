@@ -2,41 +2,50 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjetRepository;
+use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
-#[ORM\Entity(repositoryClass: ProjetRepository::class)]
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
+    public const READ = 'project:read';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([self::READ])]
     private ?string $projectLink = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ])]
     private ?string $sourceCodeLink = null;
 
     /**
      * @var Collection<int, Goal>
      */
     #[ORM\ManyToMany(targetEntity: Goal::class, inversedBy: 'projects')]
+    #[Groups([self::READ])]
     private Collection $goals;
 
     /**
      * @var Collection<int, Stack>
      */
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'projects')]
+    #[Groups([self::READ])]
     private Collection $stacks;
 
     public function __construct()

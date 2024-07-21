@@ -67,7 +67,9 @@ class StackController extends AbstractController
             $icon = $form->get('icon')->getData();
             if ($icon) {
                 if ($stack->getIcon()) {
-                    unlink($this->getParameter('stack_upload_dir') . '/' . $stack->getIcon());
+                    if (file_exists($this->getParameter('stack_upload_dir') . '/' . $stack->getIcon())) {
+                        unlink($this->getParameter('stack_upload_dir') . '/' . $stack->getIcon());
+                    }
                 }
 
                 $iconName = md5(uniqid()) . '.' . $icon->guessExtension();

@@ -6,22 +6,28 @@ use App\Repository\StackRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: StackRepository::class)]
 class Stack
 {
+    public const READ = 'stack:read';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ, Project::READ, Skill::READ])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([self::READ, Project::READ])]
     private ?string $icon = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ])]
     private ?string $color = null;
 
     /**
