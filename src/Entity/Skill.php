@@ -6,25 +6,31 @@ use App\Repository\SkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
 class Skill
 {
+    public const READ = 'skill:read';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups([self::READ])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups([self::READ])]
     private ?string $icon = null;
 
     /**
      * @var Collection<int, Stack>
      */
     #[ORM\ManyToMany(targetEntity: Stack::class, inversedBy: 'skills')]
+    #[Groups([self::READ])]
     private Collection $stacks;
 
     public function __construct()

@@ -10,13 +10,13 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Icône</th>
-                <th>Couleur</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Icône</th>
+            <th>Couleur</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for stack in stacks %}
@@ -25,12 +25,16 @@
                 <td>{{ stack.title }}</td>
                 <td>
                     {% if stack.icon %}
-                        <img src="{{ asset(upload_stack_dir~stack.icon) }}" alt="{{ stack.title }}" style="max-width: 100px;">
+                        <img src="{{ asset(upload_stack_dir~stack.icon) }}" alt="{{ stack.title }}"
+                             style="max-width: 100px; background-color: {{ stack.color }};">
                     {% else %}
                         Aucune icône
                     {% endif %}
                 </td>
-                <td><span style="background-color: {{ stack.color }};">{{ stack.color }}</span>
+                <td>
+                    <span style="background-color: {{ stack.color }}; color: {{ stack.color|contrastColor }}; padding: 5px; border-radius: 10px;">
+                        {{ stack.color }}
+                    </span>
                 </td>
                 <td>
                     <a href="{{ path('app_stack_show', {'id': stack.id}) }}">Détails</a>
