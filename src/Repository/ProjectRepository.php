@@ -40,4 +40,15 @@ class ProjectRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * @return array<Project>
+     */
+    public function findVisible(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.visible = true')
+            ->getQuery()
+            ->getResult();
+    }
 }

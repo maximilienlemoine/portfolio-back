@@ -19,6 +19,7 @@
                 <th>Lien du code source</th>
                 <th>Stacks</th>
                 <th>Objectif</th>
+                <th>Visible</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -35,6 +36,9 @@
                 </td>
                 <td>
                     {% include 'goal/_read.html.twig' with {'goals' : project.goals} %}
+                </td>
+                <td>
+                    {{ project.visible ? 'Oui' : 'Non' }}
                 </td>
                 <td>
                     <a href="{{ path('app_project_show', {'id': project.id}) }}">Détails</a>

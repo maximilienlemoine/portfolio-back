@@ -48,10 +48,14 @@ class Project
     #[Groups([self::READ])]
     private Collection $stacks;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $visible = null;
+
     public function __construct()
     {
         $this->goals = new ArrayCollection();
         $this->stacks = new ArrayCollection();
+        $this->setVisible(true);
     }
 
     public function getId(): ?int
@@ -151,6 +155,18 @@ class Project
     public function removeStack(Stack $stack): static
     {
         $this->stacks->removeElement($stack);
+
+        return $this;
+    }
+
+    public function isVisible(): ?bool
+    {
+        return $this->visible;
+    }
+
+    public function setVisible(bool $visible): static
+    {
+        $this->visible = $visible;
 
         return $this;
     }

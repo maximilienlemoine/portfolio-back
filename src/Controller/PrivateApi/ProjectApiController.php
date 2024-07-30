@@ -28,7 +28,7 @@ class ProjectApiController extends AbstractController
             return $this->securityApiService->checkApiKey($request);
         }
 
-        $projects = $this->projectRepository->findAll();
+        $projects = $this->projectRepository->findVisible();
         $projectsJson = $this->serializer->serialize($projects, 'json', ['groups' => Project::READ]);
 
         return new JsonResponse($projectsJson, 200, [], true);
