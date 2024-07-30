@@ -25,6 +25,7 @@ class ProjectType extends AbstractType
             ])
             ->add('projectLink', TextType::class, [
                 'label' => 'Lien du projet',
+                'required' => false,
             ])
             ->add('sourceCodeLink', TextType::class, [
                 'label' => 'Lien du code source',
