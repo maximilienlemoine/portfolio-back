@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Modifier la Stack "{{ stack.id }} - {{ stack.title }}"</h1>
+        <h1>Modifier la Stack "{{ stack }}"</h1>
         <div class="d-flex gap-3">
             {{ include('stack/_delete_form.html.twig') }}
             <a class="btn btn-secondary" href="{{ path('app_stack_index') }}">Retour à la liste des stacks</a>

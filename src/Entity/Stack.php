@@ -45,6 +45,10 @@ class Stack
     #[ORM\Column(options: ['default' => true])]
     private ?bool $badgeVisible = null;
 
+    #[ORM\Column]
+    #[ORM\GeneratedValue]
+    private ?int $number = null;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
@@ -54,7 +58,7 @@ class Stack
 
     public function __toString(): string
     {
-        return sprintf('%s - %s', $this->id, $this->title);
+        return sprintf('%s - %s', $this->number, $this->title);
     }
 
     public function getId(): ?int
@@ -160,6 +164,18 @@ class Stack
     public function setBadgeVisible(bool $badgeVisible): static
     {
         $this->badgeVisible = $badgeVisible;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(int $number): static
+    {
+        $this->number = $number;
 
         return $this;
     }

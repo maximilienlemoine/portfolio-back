@@ -44,10 +44,22 @@ class StackRepository extends ServiceEntityRepository
     /**
      * @return array<Stack>
      */
-    public function findVisibled(): array
+    public function findVisible(): array
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.badgeVisible = true')
+            ->orderBy('s.number', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return array<Stack>
+     */
+    public function findAllOrderedByNumber(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.number', 'ASC')
             ->getQuery()
             ->getResult();
     }

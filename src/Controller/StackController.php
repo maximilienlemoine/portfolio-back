@@ -18,7 +18,7 @@ class StackController extends AbstractController
     public function index(StackRepository $stackRepository): Response
     {
         return $this->render('stack/index.html.twig', [
-            'stacks' => $stackRepository->findAll(),
+            'stacks' => $stackRepository->findAllOrderedByNumber(),
         ]);
     }
 

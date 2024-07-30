@@ -11,7 +11,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Number</th>
             <th>Titre</th>
             <th>Icône</th>
             <th>Couleur</th>
@@ -21,7 +21,7 @@
         <tbody>
         {% for stack in stacks %}
             <tr>
-                <td>{{ stack.id }}</td>
+                <td>{{ stack.number }}</td>
                 <td>{{ stack.title }}</td>
                 <td>
                     {% if stack.icon %}
