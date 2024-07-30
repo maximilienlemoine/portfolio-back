@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Skill;
 use App\Entity\Stack;
+use App\Repository\StackRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -26,8 +27,12 @@ class SkillType extends AbstractType
             ])
             ->add('stacks', EntityType::class, [
                 'class' => Stack::class,
+                'query_builder' => function (StackRepository $er) {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.number', 'ASC');
+                },
                 'choice_label' => function (Stack $stack) {
-                    return sprintf('%s - %s', $stack->getId(), $stack->getTitle());
+                    return $stack;
                 },
                 'multiple' => true,
                 'attr' => [

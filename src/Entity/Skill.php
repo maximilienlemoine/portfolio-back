@@ -72,7 +72,10 @@ class Skill
      */
     public function getStacks(): array
     {
-        return $this->stacks->getValues();
+        $stacks = $this->stacks->getValues();
+        usort($stacks, fn (Stack $a, Stack $b) => $a->getNumber() <=> $b->getNumber());
+
+        return $stacks;
     }
 
     public function addStack(Stack $stack): static
