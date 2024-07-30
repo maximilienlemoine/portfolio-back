@@ -40,4 +40,15 @@ class StackRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * @return array<Stack>
+     */
+    public function findVisibled(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.badgeVisible = true')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -33,7 +33,7 @@ class StackApiController extends AbstractController
             return $this->securityApiService->checkApiKey($request);
         }
 
-        $stacks = $this->stackRepository->findAll();
+        $stacks = $this->stackRepository->findVisibled();
         $stacksJson = $this->serializer->serialize($stacks, 'json', ['groups' => [Stack::READ]]);
 
         return new Response($stacksJson, 200, ['Content-Type' => 'application/json']);

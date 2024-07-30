@@ -42,10 +42,14 @@ class Stack
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'stacks')]
     private Collection $projects;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $badgeVisible = null;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
         $this->projects = new ArrayCollection();
+        $this->setBadgeVisible(true);
     }
 
     public function __toString(): string
@@ -144,6 +148,18 @@ class Stack
         if ($this->projects->removeElement($project)) {
             $project->removeStack($this);
         }
+
+        return $this;
+    }
+
+    public function isBadgeVisible(): ?bool
+    {
+        return $this->badgeVisible;
+    }
+
+    public function setBadgeVisible(bool $badgeVisible): static
+    {
+        $this->badgeVisible = $badgeVisible;
 
         return $this;
     }
