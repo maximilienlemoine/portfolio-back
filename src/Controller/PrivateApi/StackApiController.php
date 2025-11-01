@@ -20,15 +20,12 @@ class StackApiController extends AbstractController
         private readonly SecurityApiService  $securityApiService,
         private readonly StackRepository     $stackRepository,
         private readonly SerializerInterface $serializer,
-    )
-    {
-    }
+    ) {}
 
-    #[Route('/get', name: 'api_private_stack_get', methods: ['POST'])]
+    #[Route('/', name: 'api_private_stack_get', methods: ['GET'])]
     public function index(
         Request $request
-    ): Response
-    {
+    ): Response {
         if ($this->securityApiService->checkApiKey($request)) {
             return $this->securityApiService->checkApiKey($request);
         }

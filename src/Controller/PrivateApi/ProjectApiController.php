@@ -17,10 +17,10 @@ class ProjectApiController extends AbstractController
 {
     public function __construct(
         private readonly SecurityApiService $securityApiService,
-        private readonly ProjectRepository  $projectRepository, private readonly SerializerInterface $serializer,
-    ) {
-    }
-    #[Route('/get', name: 'api_private_project_get', methods: ['POST'])]
+        private readonly ProjectRepository  $projectRepository,
+        private readonly SerializerInterface $serializer,
+    ) {}
+    #[Route('/', name: 'api_private_project_get', methods: ['GET'])]
     public function index(
         Request $request
     ): Response {

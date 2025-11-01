@@ -18,15 +18,12 @@ class SkillApiController extends AbstractController
         private readonly SecurityApiService $securityApiService,
         private readonly SkillRepository    $skillRepository,
         private readonly SerializerInterface $serializer,
-    )
-    {
-    }
+    ) {}
 
-    #[Route('/get', name: 'api_private_skill_get', methods: ['POST'])]
+    #[Route('/', name: 'api_private_skill_get', methods: ['GET'])]
     public function index(
         Request $request
-    ): Response
-    {
+    ): Response {
         if ($this->securityApiService->checkApiKey($request)) {
             return $this->securityApiService->checkApiKey($request);
         }
