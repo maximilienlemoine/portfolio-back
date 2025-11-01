@@ -10,7 +10,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,6 +30,7 @@ class ProjectType extends AbstractType
             ])
             ->add('sourceCodeLink', TextType::class, [
                 'label' => 'Lien du code source',
+                'required' => false,
             ])
             ->add('goals', EntityType::class, [
                 'class' => Goal::class,
@@ -50,7 +50,6 @@ class ProjectType extends AbstractType
                 },
                 'choice_label' => function (Stack $stack) {
                     return $stack;
-
                 },
                 'multiple' => true,
                 'attr' => [

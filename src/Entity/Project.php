@@ -30,7 +30,7 @@ class Project
     #[Groups([self::READ])]
     private ?string $projectLink = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups([self::READ])]
     private ?string $sourceCodeLink = null;
 
@@ -141,7 +141,7 @@ class Project
     public function getStacks(): array
     {
         $stacks = $this->stacks->getValues();
-        usort($stacks, fn (Stack $a, Stack $b) => $a->getNumber() <=> $b->getNumber());
+        usort($stacks, fn(Stack $a, Stack $b) => $a->getNumber() <=> $b->getNumber());
 
         return $stacks;
     }
