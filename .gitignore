@@ -31,3 +31,5 @@ yarn-error.log
 
 public/upload/skill/*
 public/upload/stack/*
+public/upload/me/*
+public/upload_old/*

@@ -11,8 +11,10 @@ parameters:
     absolute_upload_dir: '%env(APP_URL)%/upload'
     skill_upload_dir: '%upload_dir%/skill'
     stack_upload_dir: '%upload_dir%/stack'
+    me_upload_dir: '%upload_dir%/me'
     relative_skill_upload_dir: '%absolute_upload_dir%/skill'
     relative_stack_upload_dir: '%absolute_upload_dir%/stack'
+    relative_me_upload_dir: '%absolute_upload_dir%/me'
     mailer_app_url: '%env(MAILER_APP_URL)%'
     mailer_api_header: '%env(MAILER_API_HEADER)%'
     mailer_api_key: '%env(MAILER_API_KEY)%'
@@ -52,3 +54,7 @@ services:
     App\Serializer\SkillNormalizer:
         arguments:
             $uploadPath: '%relative_skill_upload_dir%'
+
+    App\Serializer\MeNormalizer:
+        arguments:
+            $uploadPath: '%relative_me_upload_dir%'

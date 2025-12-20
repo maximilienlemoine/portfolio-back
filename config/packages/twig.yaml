@@ -3,6 +3,7 @@ twig:
     globals:
         upload_skill_dir: '/upload/skill/'
         upload_stack_dir: '/upload/stack/'
+        upload_me_dir: '/upload/me/'
 
 when@test:
     twig:

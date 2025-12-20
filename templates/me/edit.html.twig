@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Modifier mes informations "{{ me.id }} - {{ me.name }}"</h1>
+    </div>
+
+    {{ include('me/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <br>
+    <div>
+        <a
+                href="{{ asset( upload_me_dir~me.cv ) }}"
+                class="btn-download"
+                download
+        >
+            Télécharger le CV
+        </a>
+    </div>
+    <img src="{{ upload_me_dir~me.image }}" alt="{{ me.name }}" style="max-width: 100px;">
+{% endblock %}
