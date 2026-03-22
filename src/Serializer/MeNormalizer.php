@@ -11,18 +11,19 @@ class MeNormalizer implements NormalizerInterface
     public function __construct(
         private readonly ObjectNormalizer $objectNormalizer,
         private readonly string $uploadPath
-    ) {}
+    ) {
+    }
 
     public function normalize($object, string $format = null, array $context = []): array
     {
         $data = $this->objectNormalizer->normalize($object, $format, $context);
 
         if ($object->getCv()) {
-            $data['cv'] = sprintf('%s%s', $this->uploadPath, $object->getCv());
+            $data['cv'] = sprintf('%s/%s', $this->uploadPath, $object->getCv());
         }
 
         if ($object->getImage()) {
-            $data['image'] = sprintf('%s%s', $this->uploadPath, $object->getImage());
+            $data['image'] = sprintf('%s/%s', $this->uploadPath, $object->getImage());
         }
 
         return $data;
@@ -33,4 +34,3 @@ class MeNormalizer implements NormalizerInterface
         return $data instanceof Me;
     }
 }
-

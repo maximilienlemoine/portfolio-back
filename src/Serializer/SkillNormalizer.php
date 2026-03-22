@@ -11,14 +11,15 @@ class SkillNormalizer implements NormalizerInterface
     public function __construct(
         private readonly ObjectNormalizer $objectNormalizer,
         private readonly string $uploadPath
-    ) {}
+    ) {
+    }
 
     public function normalize($object, string $format = null, array $context = []): array
     {
         $data = $this->objectNormalizer->normalize($object, $format, $context);
 
         if ($object->getIcon()) {
-            $data['icon'] = sprintf('%s%s', $this->uploadPath, $object->getIcon());
+            $data['icon'] = sprintf('%s/%s', $this->uploadPath, $object->getIcon());
         }
 
         return $data;
@@ -29,4 +30,3 @@ class SkillNormalizer implements NormalizerInterface
         return $data instanceof Skill;
     }
 }
-
