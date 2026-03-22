@@ -16,7 +16,7 @@ class MeApiController extends AbstractController
 {
     public function __construct(
         private readonly SecurityApiService $securityApiService,
-        private readonly MeRepository    $meRepository,
+        private readonly MeRepository $meRepository,
         private readonly SerializerInterface $serializer,
     ) {}
 
@@ -28,8 +28,8 @@ class MeApiController extends AbstractController
             return $this->securityApiService->checkApiKey($request);
         }
 
-        $skills = $this->meRepository->findUnique();
-        $skillsJson = $this->serializer->serialize($skills, 'json', ['groups' => Me::READ]);
+        $me = $this->meRepository->findUnique();
+        $skillsJson = $this->serializer->serialize($me, 'json', ['groups' => Me::READ]);
 
         return new Response($skillsJson, 200, ['Content-Type' => 'application/json']);
     }
