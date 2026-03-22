@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/me')]
 class MeController extends AbstractController
 {
-
     #[Route('/edit', name: 'app_me_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, EntityManagerInterface $entityManager, MeRepository $meRepository): Response
     {

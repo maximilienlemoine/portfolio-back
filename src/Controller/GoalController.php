@@ -71,7 +71,7 @@ class GoalController extends AbstractController
     #[Route('/{id}', name: 'app_goal_delete', methods: ['POST'])]
     public function delete(Request $request, Goal $goal, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$goal->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $goal->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($goal);
             $entityManager->flush();
         }
