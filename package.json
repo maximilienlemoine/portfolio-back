@@ -1,11 +1,11 @@
 {
     "devDependencies": {
         "@babel/core": "^7.29.0",
-        "@babel/preset-env": "^7.29.2",
+        "@babel/preset-env": "^7.29.3",
         "@symfony/webpack-encore": "^6.0.0",
         "core-js": "^3.49.0",
         "regenerator-runtime": "^0.14.1",
-        "webpack": "^5.105.4",
+        "webpack": "^5.106.2",
         "webpack-cli": "^6.0.1",
         "webpack-notifier": "^1.15.0"
     },
@@ -21,6 +21,6 @@
         "bootstrap": "^5.3.8",
         "sass": "^1.99.0",
         "sass-loader": "^16.0.7",
-        "tom-select": "^2.5.2"
+        "tom-select": "^2.6.0"
     }
 }
